@@ -1,134 +1,134 @@
-# Laravel E-Commerce Application - Technical Documentation
+# Laravel E-Commerce Aplikace - Technická Dokumentace
 
-## Table of Contents
-1. [Project Overview](#project-overview)
-2. [Technology Stack](#technology-stack)
-3. [Architecture & Structure](#architecture--structure)
-4. [Database Design](#database-design)
-5. [Authentication & Authorization](#authentication--authorization)
-6. [Session Management](#session-management)
-7. [Frontend Architecture](#frontend-architecture)
-8. [Blade Template System](#blade-template-system)
-9. [Cart System](#cart-system)
-10. [Order Processing](#order-processing)
+## Obsah
+1. [Přehled Projektu](#přehled-projektu)
+2. [Technologický Stack](#technologický-stack)
+3. [Architektura a Struktura](#architektura-a-struktura)
+4. [Návrh Databáze](#návrh-databáze)
+5. [Autentifikace a Autorizace](#autentifikace-a-autorizace)
+6. [Správa Relací](#správa-relací)
+7. [Frontend Architektura](#frontend-architektura)
+8. [Blade Template Systém](#blade-template-systém)
+9. [Systém Košíku](#systém-košíku)
+10. [Zpracování Objednávek](#zpracování-objednávek)
 11. [Admin Panel](#admin-panel)
-12. [Configuration Management](#configuration-management)
-13. [Logging System](#logging-system)
-14. [Asset Management](#asset-management)
-15. [Security Features](#security-features)
-16. [API & Routes](#api--routes)
-17. [Testing](#testing)
-18. [Deployment Considerations](#deployment-considerations)
+12. [Správa Konfigurace](#správa-konfigurace)
+13. [Systém Logování](#systém-logování)
+14. [Správa Assetů](#správa-assetů)
+15. [Bezpečnostní Funkce](#bezpečnostní-funkce)
+16. [API a Routy](#api-a-routy)
+17. [Testování](#testování)
+18. [Nasazení](#nasazení)
 
 ---
 
-## Project Overview
+## Přehled Projektu
 
-This is a full-featured e-commerce application built with Laravel 12, featuring product management, shopping cart functionality, order processing, and an administrative interface. The application follows MVC (Model-View-Controller) architecture and implements modern web development practices.
+Toto je plně funkční e-commerce aplikace postavená na Laravel 12, která obsahuje správu produktů, funkcionalitu nákupního košíku, zpracování objednávek a administrační rozhraní. Aplikace následuje MVC (Model-View-Controller) architekturu a implementuje moderní postupy webového vývoje.
 
-### Key Features
-- **Product Catalog**: Browse products by category with pagination
-- **Shopping Cart**: Session-based cart with quantity management
-- **User Authentication**: Registration, login, and profile management
-- **Admin Panel**: Product and category management for administrators
-- **Order Processing**: Complete checkout flow with PDF invoice generation
-- **Responsive Design**: Mobile-friendly interface using Tailwind CSS
+### Klíčové Funkce
+- **Katalog Produktů**: Procházení produktů podle kategorií s stránkováním
+- **Nákupní Košík**: Košík založený na relacích se správou množství
+- **Autentifikace Uživatelů**: Registrace, přihlášení a správa profilu
+- **Admin Panel**: Správa produktů a kategorií pro administrátory
+- **Zpracování Objednávek**: Kompletní proces checkoutu s generováním PDF faktur
+- **Responzivní Design**: Mobilně přívětivé rozhraní pomocí Tailwind CSS
 
 ---
 
-## Technology Stack
+## Technologický Stack
 
 ### Backend
-- **Laravel 12**: PHP framework for web application development
-- **PHP 8.2+**: Server-side programming language
-- **MySQL/SQLite**: Database management system
-- **Composer**: PHP dependency management
+- **Laravel 12**: PHP framework pro vývoj webových aplikací
+- **PHP 8.2+**: Server-side programovací jazyk
+- **MySQL/SQLite**: Systém správy databáze
+- **Composer**: Správce PHP závislostí
 
 ### Frontend
 - **Tailwind CSS 4.1**: Utility-first CSS framework
-- **Alpine.js**: Lightweight JavaScript framework for interactivity
-- **Vite**: Modern build tool for frontend assets
-- **Vue.js 3**: Progressive JavaScript framework (configured but not heavily used)
+- **Alpine.js**: Lehký JavaScript framework pro interaktivitu
+- **Vite**: Moderní build nástroj pro frontend assety
+- **Vue.js 3**: Progresivní JavaScript framework (nakonfigurován, ale neintenzivně používán)
 
-### Additional Libraries
-- **DomPDF**: PDF generation for invoices
-- **Inertia.js**: Modern monolith approach (configured)
-- **Ziggy**: Route generation for JavaScript
+### Další Knihovny
+- **DomPDF**: Generování PDF pro faktury
+- **Inertia.js**: Moderní monolitický přístup (nakonfigurován)
+- **Ziggy**: Generování rout pro JavaScript
 
 ---
 
-## Architecture & Structure
+## Architektura a Struktura
 
-### Directory Structure
+### Struktura Adresářů
 ```
 example-app/
-├── app/                    # Application core
-│   ├── Console/           # Artisan commands
-│   ├── Http/              # HTTP layer
-│   │   ├── Controllers/   # Request handlers
-│   │   ├── Middleware/    # Request filters
-│   │   └── Requests/      # Form validation
-│   ├── Models/            # Eloquent ORM models
-│   ├── Providers/         # Service providers
-│   └── Services/          # Business logic services
-├── config/                # Configuration files
-├── database/              # Database migrations & seeders
-├── public/                # Web server document root
-├── resources/             # Frontend resources
-│   ├── views/             # Blade templates
-│   ├── css/               # Stylesheets
-│   └── js/                # JavaScript files
-├── routes/                # Route definitions
-├── storage/               # File storage & logs
-└── tests/                 # Application tests
+├── app/                    # Jádro aplikace
+│   ├── Console/           # Artisan příkazy
+│   ├── Http/              # HTTP vrstva
+│   │   ├── Controllers/   # Zpracovatelé požadavků
+│   │   ├── Middleware/    # Filtry požadavků
+│   │   └── Requests/      # Validace formulářů
+│   ├── Models/            # Eloquent ORM modely
+│   ├── Providers/         # Service providery
+│   └── Services/          # Business logika služeb
+├── config/                # Konfigurační soubory
+├── database/              # Migrace a seedery databáze
+├── public/                # Kořen dokumentů webového serveru
+├── resources/             # Frontend zdroje
+│   ├── views/             # Blade šablony
+│   ├── css/               # Styly
+│   └── js/                # JavaScript soubory
+├── routes/                # Definice rout
+├── storage/               # Úložiště souborů a logy
+└── tests/                 # Testy aplikace
 ```
 
 ### Design Patterns
-- **MVC Pattern**: Separation of concerns between models, views, and controllers
-- **Repository Pattern**: Data access abstraction through Eloquent models
-- **Service Pattern**: Business logic encapsulation in service classes
-- **Middleware Pattern**: Request/response filtering and processing
+- **MVC Pattern**: Oddělení zodpovědností mezi modely, pohledy a kontrolery
+- **Repository Pattern**: Abstrakce přístupu k datům přes Eloquent modely
+- **Service Pattern**: Zapouzdření business logiky v service třídách
+- **Middleware Pattern**: Filtrování a zpracování požadavků/odpovědí
 
 ---
 
-## Database Design
+## Návrh Databáze
 
-### Database Schema
+### Schéma Databáze
 
-#### Users Table
+#### Tabulka Users
 ```sql
 users (
-    id (bigint, primary key)
+    id (bigint, primární klíč)
     name (varchar)
-    email (varchar, unique)
+    email (varchar, unikátní)
     email_verified_at (timestamp, nullable)
-    password (varchar, hashed)
-    is_admin (boolean, default: false)
+    password (varchar, hashovaný)
+    is_admin (boolean, výchozí: false)
     remember_token (varchar, nullable)
     created_at (timestamp)
     updated_at (timestamp)
 )
 ```
 
-#### Categories Table
+#### Tabulka Categories
 ```sql
 categories (
-    id (bigint, primary key)
+    id (bigint, primární klíč)
     name (varchar)
-    slug (varchar, unique)
+    slug (varchar, unikátní)
     description (text, nullable)
     created_at (timestamp)
     updated_at (timestamp)
 )
 ```
 
-#### Products Table
+#### Tabulka Products
 ```sql
 products (
-    id (bigint, primary key)
-    category_id (bigint, foreign key)
+    id (bigint, primární klíč)
+    category_id (bigint, cizí klíč)
     name (varchar)
-    slug (varchar, unique)
+    slug (varchar, unikátní)
     description (text)
     price (decimal(10,2))
     image_path (varchar, nullable)
@@ -137,11 +137,11 @@ products (
 )
 ```
 
-#### Orders Table
+#### Tabulka Orders
 ```sql
 orders (
-    id (bigint, primary key)
-    user_id (bigint, foreign key)
+    id (bigint, primární klíč)
+    user_id (bigint, cizí klíč)
     status (varchar)
     total_amount (decimal(10,2))
     shipping_address (text)
@@ -150,12 +150,12 @@ orders (
 )
 ```
 
-#### Order Items Table
+#### Tabulka Order Items
 ```sql
 order_items (
-    id (bigint, primary key)
-    order_id (bigint, foreign key)
-    product_id (bigint, foreign key)
+    id (bigint, primární klíč)
+    order_id (bigint, cizí klíč)
+    product_id (bigint, cizí klíč)
     quantity (integer)
     price (decimal(10,2))
     created_at (timestamp)
@@ -163,11 +163,11 @@ order_items (
 )
 ```
 
-#### Sessions Table
+#### Tabulka Sessions
 ```sql
 sessions (
-    id (varchar, primary key)
-    user_id (bigint, nullable, foreign key)
+    id (varchar, primární klíč)
+    user_id (bigint, nullable, cizí klíč)
     ip_address (varchar, nullable)
     user_agent (text, nullable)
     payload (text)
@@ -175,40 +175,40 @@ sessions (
 )
 ```
 
-### Relationships
-- **User → Orders**: One-to-Many
-- **Category → Products**: One-to-Many
-- **Order → OrderItems**: One-to-Many
-- **Product → OrderItems**: One-to-Many
-- **User → Sessions**: One-to-Many
+### Vztahy
+- **User → Orders**: Jeden k mnoha
+- **Category → Products**: Jeden k mnoha
+- **Order → OrderItems**: Jeden k mnoha
+- **Product → OrderItems**: Jeden k mnoha
+- **User → Sessions**: Jeden k mnoha
 
 ---
 
-## Authentication & Authorization
+## Autentifikace a Autorizace
 
-### Authentication System
-The application uses Laravel's built-in authentication system with Breeze package integration.
+### Systém Autentifikace
+Aplikace používá vestavěný autentifikační systém Laravel s integrací balíčku Breeze.
 
-#### User Registration
+#### Registrace Uživatele
 ```php
-// Registration process includes:
-- Email validation
-- Password hashing (bcrypt)
-- Email verification (optional)
-- Automatic login after registration
+// Proces registrace zahrnuje:
+- Validaci emailu
+- Hashování hesla (bcrypt)
+- Ověření emailu (volitelné)
+- Automatické přihlášení po registraci
 ```
 
-#### Login Process
+#### Proces Přihlášení
 ```php
-// Login validation:
-- Email/password verification
-- Remember me functionality
-- Session creation
-- Redirect to intended page
+// Validace přihlášení:
+- Ověření emailu/hesla
+- Funkcionalita "Zapamatovat si mě"
+- Vytvoření relace
+- Přesměrování na zamýšlenou stránku
 ```
 
-### Authorization System
-Custom authorization is implemented through middleware and model attributes.
+### Systém Autorizace
+Vlastní autorizace je implementována přes middleware a atributy modelů.
 
 #### Admin Middleware
 ```php
@@ -217,16 +217,16 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::check() || !Auth::user()->is_admin) {
-            return redirect('/')->with('error', 'Unauthorized access.');
+            return redirect('/')->with('error', 'Neautorizovaný přístup.');
         }
         return $next($request);
     }
 }
 ```
 
-#### Route Protection
+#### Ochrana Rout
 ```php
-// Admin routes are protected with middleware
+// Admin routy jsou chráněny middleware
 Route::middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('products', AdminProductController::class);
@@ -236,12 +236,12 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
 
 ---
 
-## Session Management
+## Správa Relací
 
-### Session Configuration
-The application uses database-driven sessions for persistence and scalability.
+### Konfigurace Relací
+Aplikace používá databázově řízené relace pro perzistenci a škálovatelnost.
 
-#### Session Driver
+#### Driver Relací
 ```php
 // config/session.php
 'driver' => env('SESSION_DRIVER', 'database'),
@@ -249,9 +249,9 @@ The application uses database-driven sessions for persistence and scalability.
 'lifetime' => (int) env('SESSION_LIFETIME', 120),
 ```
 
-#### Session Usage in Cart
+#### Použití Relací v Košíku
 ```php
-// CartService uses sessions for cart persistence
+// CartService používá relace pro perzistenci košíku
 class CartService
 {
     private const CART_KEY = 'shopping_cart';
@@ -264,26 +264,26 @@ class CartService
     public function addToCart(Product $product, int $quantity = 1)
     {
         $cart = $this->getCart();
-        // Add product to cart logic
+        // Logika přidání produktu do košíku
         Session::put(self::CART_KEY, $cart);
     }
 }
 ```
 
-### Session Security
-- **CSRF Protection**: All forms include CSRF tokens
-- **Session Encryption**: Optional session data encryption
-- **Secure Cookies**: HTTPS-only cookies in production
-- **Session Timeout**: Configurable session lifetime
+### Bezpečnost Relací
+- **CSRF Ochrana**: Všechny formuláře obsahují CSRF tokeny
+- **Šifrování Relací**: Volitelné šifrování dat relací
+- **Bezpečné Cookies**: HTTPS-only cookies v produkci
+- **Timeout Relací**: Konfigurovatelná životnost relací
 
 ---
 
-## Frontend Architecture
+## Frontend Architektura
 
-### Asset Compilation
-The application uses Vite for modern asset compilation and development.
+### Kompilace Assetů
+Aplikace používá Vite pro moderní kompilaci assetů a vývoj.
 
-#### Vite Configuration
+#### Konfigurace Vite
 ```javascript
 // vite.config.js
 export default defineConfig({
@@ -299,7 +299,7 @@ export default defineConfig({
 });
 ```
 
-#### Tailwind CSS Integration
+#### Integrace Tailwind CSS
 ```javascript
 // tailwind.config.js
 export default {
@@ -319,19 +319,19 @@ export default {
 };
 ```
 
-### JavaScript Architecture
-- **Alpine.js**: Lightweight reactivity for interactive components
-- **Vue.js 3**: Configured for potential SPA features
-- **Ziggy**: Route generation for JavaScript
+### JavaScript Architektura
+- **Alpine.js**: Lehká reaktivita pro interaktivní komponenty
+- **Vue.js 3**: Nakonfigurován pro potenciální SPA funkce
+- **Ziggy**: Generování rout pro JavaScript
 
 ---
 
-## Blade Template System
+## Blade Template Systém
 
-### Template Structure
-The application uses Laravel's Blade templating engine with component-based architecture.
+### Struktura Šablon
+Aplikace používá Laravel Blade templating engine s komponentově založenou architekturou.
 
-#### Layout System
+#### Systém Layoutů
 ```php
 // resources/views/layouts/app.blade.php
 <!DOCTYPE html>
@@ -356,56 +356,56 @@ The application uses Laravel's Blade templating engine with component-based arch
 </html>
 ```
 
-#### Component System
+#### Systém Komponent
 ```php
-// Reusable components in resources/views/components/
+// Znovupoužitelné komponenty v resources/views/components/
 - primary-button.blade.php
 - dropdown.blade.php
 - modal.blade.php
 - nav-link.blade.php
 ```
 
-#### Template Inheritance
+#### Dědičnost Šablon
 ```php
-// Child templates extend layouts
+// Dceřiné šablony rozšiřují layouty
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Products') }}
+            {{ __('Produkty') }}
         </h2>
     </x-slot>
     
-    <!-- Page content -->
+    <!-- Obsah stránky -->
 </x-app-layout>
 ```
 
-### Blade Directives
-- **@foreach**: Loop through collections
-- **@if/@else**: Conditional rendering
-- **@auth/@guest**: Authentication checks
-- **@include**: Include other templates
-- **@csrf**: CSRF protection tokens
+### Blade Direktivy
+- **@foreach**: Cyklus přes kolekce
+- **@if/@else**: Podmíněné vykreslování
+- **@auth/@guest**: Kontroly autentifikace
+- **@include**: Zahrnutí jiných šablon
+- **@csrf**: CSRF ochranné tokeny
 
 ---
 
-## Cart System
+## Systém Košíku
 
-### Cart Service Architecture
-The cart system is implemented as a service class for better separation of concerns.
+### Architektura Cart Service
+Systém košíku je implementován jako service třída pro lepší oddělení zodpovědností.
 
-#### CartService Implementation
+#### Implementace CartService
 ```php
 class CartService
 {
     private const CART_KEY = 'shopping_cart';
 
-    // Get current cart contents
+    // Získání aktuálního obsahu košíku
     public function getCart()
     {
         return Session::get(self::CART_KEY, []);
     }
 
-    // Add product to cart
+    // Přidání produktu do košíku
     public function addToCart(Product $product, int $quantity = 1)
     {
         $cart = $this->getCart();
@@ -426,7 +426,7 @@ class CartService
         Session::put(self::CART_KEY, $cart);
     }
 
-    // Calculate cart total
+    // Výpočet celkové ceny košíku
     public function getTotal()
     {
         $cart = $this->getCart();
@@ -456,23 +456,23 @@ class CartController extends Controller
     {
         $quantity = $request->input('quantity', 1);
         $this->cartService->addToCart($product, $quantity);
-        return redirect()->back()->with('success', 'Product added to cart successfully.');
+        return redirect()->back()->with('success', 'Produkt byl úspěšně přidán do košíku.');
     }
 }
 ```
 
-### Cart Features
-- **Session Persistence**: Cart survives browser sessions
-- **Quantity Management**: Add, update, remove quantities
-- **Total Calculation**: Automatic price calculations
-- **Product Information**: Stores product details for display
+### Funkce Košíku
+- **Perzistence Relací**: Košík přežívá prohlížečové relace
+- **Správa Množství**: Přidání, aktualizace, odstranění množství
+- **Výpočet Celkové Ceny**: Automatické výpočty cen
+- **Informace o Produktu**: Ukládání detailů produktu pro zobrazení
 
 ---
 
-## Order Processing
+## Zpracování Objednávek
 
-### Checkout Flow
-The checkout process involves multiple steps with validation and database transactions.
+### Proces Checkoutu
+Proces checkoutu zahrnuje několik kroků s validací a databázovými transakcemi.
 
 #### Checkout Controller
 ```php
@@ -487,7 +487,7 @@ class CheckoutController extends Controller
 
     public function process(Request $request)
     {
-        // Validate shipping address
+        // Validace dodací adresy
         $validatedData = $request->validate([
             'shipping_address' => 'required|string|max:500',
         ]);
@@ -497,7 +497,7 @@ class CheckoutController extends Controller
         try {
             DB::beginTransaction();
 
-            // Create order
+            // Vytvoření objednávky
             $order = Order::create([
                 'user_id' => Auth::id(),
                 'status' => 'pending',
@@ -505,7 +505,7 @@ class CheckoutController extends Controller
                 'shipping_address' => $validatedData['shipping_address'],
             ]);
 
-            // Create order items
+            // Vytvoření položek objednávky
             foreach ($cart as $item) {
                 OrderItem::create([
                     'order_id' => $order->id,
@@ -518,22 +518,22 @@ class CheckoutController extends Controller
             DB::commit();
             $this->cartService->clearCart();
 
-            // Generate PDF invoice
+            // Generování PDF faktury
             $fileName = $this->generateInvoicePdf($order);
 
             return redirect()->route('orders.show', $order)
-                ->with('success', 'Order placed successfully!');
+                ->with('success', 'Objednávka byla úspěšně vytvořena!');
 
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()
-                ->with('error', 'There was an error processing your order.');
+                ->with('error', 'Došlo k chybě při zpracování vaší objednávky.');
         }
     }
 }
 ```
 
-### PDF Generation
+### Generování PDF
 ```php
 protected function generateInvoicePdf(Order $order)
 {
@@ -560,8 +560,8 @@ protected function generateInvoicePdf(Order $order)
 
 ## Admin Panel
 
-### Admin Interface
-The admin panel provides product and category management capabilities.
+### Admin Rozhraní
+Admin panel poskytuje možnosti správy produktů a kategorií.
 
 #### Admin Product Controller
 ```php
@@ -583,46 +583,46 @@ class ProductController extends Controller
             'image_url' => 'required|url|max:255'
         ]);
 
-        // Generate slug from name
+        // Generování slugu z názvu
         $validated['slug'] = Str::slug($validated['name']);
         $validated['image_path'] = $validated['image_url'];
 
         Product::create($validated);
 
         return redirect()->route('admin.products.index')
-            ->with('success', 'Product created successfully.');
+            ->with('success', 'Produkt byl úspěšně vytvořen.');
     }
 }
 ```
 
-#### Admin Views
-- **Product Index**: List all products with edit/delete actions
-- **Product Create**: Form for adding new products
-- **Product Edit**: Form for modifying existing products
-- **Category Management**: CRUD operations for categories
+#### Admin Pohledy
+- **Product Index**: Seznam všech produktů s akcemi editace/mazání
+- **Product Create**: Formulář pro přidání nových produktů
+- **Product Edit**: Formulář pro úpravu existujících produktů
+- **Category Management**: CRUD operace pro kategorie
 
-### Admin Features
-- **Product Management**: Create, read, update, delete products
-- **Category Management**: Organize products into categories
-- **Image URL Support**: Use external image URLs for products
-- **Slug Generation**: Automatic URL-friendly slugs
-- **Bulk Operations**: Mass actions on products
+### Admin Funkce
+- **Správa Produktů**: Vytvoření, čtení, aktualizace, mazání produktů
+- **Správa Kategorií**: Organizace produktů do kategorií
+- **Podpora URL Obrázků**: Použití externích URL obrázků pro produkty
+- **Generování Slugů**: Automatické URL-přívětivé slugy
+- **Hromadné Operace**: Hromadné akce na produktech
 
 ---
 
-## Configuration Management
+## Správa Konfigurace
 
-### Environment Configuration
-The application uses Laravel's environment-based configuration system.
+### Konfigurace Prostředí
+Aplikace používá Laravel systém konfigurace založený na prostředí.
 
-#### Key Configuration Files
-- **.env**: Environment-specific settings
-- **config/app.php**: Application settings
-- **config/database.php**: Database connections
-- **config/session.php**: Session management
-- **config/logging.php**: Logging configuration
+#### Klíčové Konfigurační Soubory
+- **.env**: Nastavení specifická pro prostředí
+- **config/app.php**: Nastavení aplikace
+- **config/database.php**: Připojení k databázi
+- **config/session.php**: Správa relací
+- **config/logging.php**: Konfigurace logování
 
-#### Database Configuration
+#### Konfigurace Databáze
 ```php
 // config/database.php
 'default' => env('DB_CONNECTION', 'sqlite'),
@@ -639,7 +639,7 @@ The application uses Laravel's environment-based configuration system.
 ],
 ```
 
-### Application Configuration
+### Konfigurace Aplikace
 ```php
 // config/app.php
 'name' => env('APP_NAME', 'Laravel'),
@@ -654,12 +654,12 @@ The application uses Laravel's environment-based configuration system.
 
 ---
 
-## Logging System
+## Systém Logování
 
-### Logging Configuration
-Laravel uses Monolog for logging with multiple channel support.
+### Konfigurace Logování
+Laravel používá Monolog pro logování s podporou více kanálů.
 
-#### Log Channels
+#### Log Kanály
 ```php
 // config/logging.php
 'channels' => [
@@ -686,85 +686,85 @@ Laravel uses Monolog for logging with multiple channel support.
 ],
 ```
 
-#### Log Usage
+#### Použití Logování
 ```php
-// In controllers and services
-Log::info('User logged in', ['user_id' => $user->id]);
-Log::error('Payment failed', ['order_id' => $order->id, 'error' => $e->getMessage()]);
-Log::debug('Cart updated', ['cart_count' => count($cart)]);
+// V kontrolerech a službách
+Log::info('Uživatel se přihlásil', ['user_id' => $user->id]);
+Log::error('Platba selhala', ['order_id' => $order->id, 'error' => $e->getMessage()]);
+Log::debug('Košík aktualizován', ['cart_count' => count($cart)]);
 ```
 
-### Log Levels
-- **emergency**: System is unusable
-- **alert**: Action must be taken immediately
-- **critical**: Critical conditions
-- **error**: Error conditions
-- **warning**: Warning conditions
-- **notice**: Normal but significant conditions
-- **info**: Informational messages
-- **debug**: Debug-level messages
+### Úrovně Logování
+- **emergency**: Systém je nepoužitelný
+- **alert**: Akce musí být provedena okamžitě
+- **critical**: Kritické podmínky
+- **error**: Chybové podmínky
+- **warning**: Varovné podmínky
+- **notice**: Normální, ale významné podmínky
+- **info**: Informační zprávy
+- **debug**: Debug úrovně zpráv
 
 ---
 
-## Asset Management
+## Správa Assetů
 
-### Vite Integration
-Modern asset compilation with hot module replacement for development.
+### Integrace Vite
+Moderní kompilace assetů s hot module replacement pro vývoj.
 
-#### Asset Compilation
+#### Kompilace Assetů
 ```bash
-# Development
+# Vývoj
 npm run dev
 
-# Production build
+# Produkční build
 npm run build
 ```
 
-#### Asset Loading in Templates
+#### Načítání Assetů v Šablonách
 ```php
-// In Blade templates
+// V Blade šablonách
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 ```
 
-### CSS Architecture
+### CSS Architektura
 - **Tailwind CSS**: Utility-first CSS framework
-- **Custom Components**: Reusable component styles
-- **Responsive Design**: Mobile-first approach
+- **Vlastní Komponenty**: Znovupoužitelné styly komponent
+- **Responzivní Design**: Mobile-first přístup
 
-### JavaScript Architecture
-- **Alpine.js**: Lightweight reactivity
-- **Vue.js**: Component-based framework (configured)
-- **ES6 Modules**: Modern JavaScript syntax
+### JavaScript Architektura
+- **Alpine.js**: Lehká reaktivita
+- **Vue.js**: Komponentově založený framework (nakonfigurován)
+- **ES6 Moduly**: Moderní JavaScript syntax
 
 ---
 
-## Security Features
+## Bezpečnostní Funkce
 
-### CSRF Protection
-All forms include CSRF tokens to prevent cross-site request forgery attacks.
+### CSRF Ochrana
+Všechny formuláře obsahují CSRF tokeny pro prevenci cross-site request forgery útoků.
 
 ```php
-// In forms
+// Ve formulářích
 @csrf
 
-// In AJAX requests
+// V AJAX požadavcích
 <meta name="csrf-token" content="{{ csrf_token() }}">
 ```
 
-### Authentication Security
-- **Password Hashing**: Bcrypt algorithm for password storage
-- **Session Security**: Secure session configuration
-- **Remember Me**: Secure remember me functionality
-- **Email Verification**: Optional email verification
+### Bezpečnost Autentifikace
+- **Hashování Hesel**: Bcrypt algoritmus pro ukládání hesel
+- **Bezpečnost Relací**: Bezpečná konfigurace relací
+- **Zapamatovat Si Mě**: Bezpečná funkcionalita zapamatování
+- **Ověření Emailu**: Volitelné ověření emailu
 
-### Authorization Security
-- **Middleware Protection**: Route-level access control
-- **Model Policies**: Fine-grained authorization
-- **Admin Checks**: Role-based access control
+### Bezpečnost Autorizace
+- **Middleware Ochrana**: Ochrana na úrovni rout
+- **Model Policies**: Jemně odstupňovaná autorizace
+- **Admin Kontroly**: Role-based access control
 
-### Input Validation
+### Validace Vstupů
 ```php
-// Form validation in controllers
+// Validace formulářů v kontrolerech
 $validated = $request->validate([
     'name' => 'required|max:255',
     'email' => 'required|email|unique:users',
@@ -774,12 +774,12 @@ $validated = $request->validate([
 
 ---
 
-## API & Routes
+## API a Routy
 
-### Route Structure
-The application uses Laravel's routing system with middleware protection.
+### Struktura Rout
+Aplikace používá Laravel systém routování s middleware ochranou.
 
-#### Web Routes
+#### Web Routy
 ```php
 // routes/web.php
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
@@ -797,7 +797,7 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
 });
 ```
 
-#### Authentication Routes
+#### Autentifikační Routy
 ```php
 // routes/auth.php
 Route::middleware('guest')->group(function () {
@@ -814,37 +814,37 @@ Route::middleware('auth')->group(function () {
 
 ### Route Model Binding
 ```php
-// Automatic model resolution
+// Automatické rozlišení modelu
 Route::get('/products/{product:slug}', [ProductController::class, 'show']);
-// Automatically resolves Product model by slug
+// Automaticky rozliší Product model podle slugu
 ```
 
 ---
 
-## Testing
+## Testování
 
-### Testing Framework
-The application uses Pest PHP for testing with Laravel integration.
+### Testovací Framework
+Aplikace používá Pest PHP pro testování s Laravel integrací.
 
-#### Test Structure
+#### Struktura Testů
 ```
 tests/
-├── Feature/           # Feature tests
-├── Unit/             # Unit tests
-└── TestCase.php      # Base test case
+├── Feature/           # Feature testy
+├── Unit/             # Unit testy
+└── TestCase.php      # Základní test case
 ```
 
-#### Example Tests
+#### Příklady Testů
 ```php
-// Feature test example
-test('user can view products', function () {
+// Feature test příklad
+test('uživatel může zobrazit produkty', function () {
     $response = $this->get('/products');
     $response->assertStatus(200);
     $response->assertViewIs('products.index');
 });
 
-// Unit test example
-test('cart service calculates total correctly', function () {
+// Unit test příklad
+test('cart service správně vypočítá celkovou cenu', function () {
     $cartService = new CartService();
     $product = Product::factory()->create(['price' => 10.00]);
     
@@ -854,117 +854,117 @@ test('cart service calculates total correctly', function () {
 });
 ```
 
-### Testing Commands
+### Testovací Příkazy
 ```bash
-# Run all tests
+# Spustit všechny testy
 php artisan test
 
-# Run specific test file
+# Spustit specifický test soubor
 php artisan test tests/Feature/ProductTest.php
 
-# Run tests with coverage
+# Spustit testy s pokrytím
 php artisan test --coverage
 ```
 
 ---
 
-## Deployment Considerations
+## Nasazení
 
-### Environment Setup
-1. **Production Environment**: Set `APP_ENV=production`
-2. **Debug Mode**: Disable debug mode (`APP_DEBUG=false`)
-3. **Database**: Configure production database
-4. **Cache**: Enable route and config caching
+### Nastavení Prostředí
+1. **Produkční Prostředí**: Nastavit `APP_ENV=production`
+2. **Debug Režim**: Vypnout debug režim (`APP_DEBUG=false`)
+3. **Databáze**: Nakonfigurovat produkční databázi
+4. **Cache**: Povolit cache rout a konfigurace
 
-### Performance Optimization
+### Optimalizace Výkonu
 ```bash
-# Cache configuration
+# Cache konfigurace
 php artisan config:cache
 
-# Cache routes
+# Cache rout
 php artisan route:cache
 
-# Cache views
+# Cache pohledů
 php artisan view:cache
 
-# Optimize autoloader
+# Optimalizace autoloaderu
 composer install --optimize-autoloader --no-dev
 ```
 
-### Security Checklist
-- [ ] Set secure session configuration
-- [ ] Configure HTTPS redirects
-- [ ] Set secure cookie settings
-- [ ] Enable CSRF protection
-- [ ] Configure proper file permissions
-- [ ] Set up error logging
-- [ ] Configure backup systems
+### Bezpečnostní Checklist
+- [ ] Nastavit bezpečnou konfiguraci relací
+- [ ] Nakonfigurovat HTTPS přesměrování
+- [ ] Nastavit bezpečné cookie nastavení
+- [ ] Povolit CSRF ochranu
+- [ ] Nakonfigurovat správná oprávnění souborů
+- [ ] Nastavit logování chyb
+- [ ] Nakonfigurovat zálohovací systémy
 
-### Database Migration
+### Migrace Databáze
 ```bash
-# Run migrations in production
+# Spustit migrace v produkci
 php artisan migrate --force
 
-# Seed database if needed
+# Seed databáze pokud je potřeba
 php artisan db:seed --force
 ```
 
-### File Storage
-- **Public Storage**: Configure for invoice PDFs
-- **File Permissions**: Set proper directory permissions
-- **Backup Strategy**: Implement regular backups
+### Úložiště Souborů
+- **Public Storage**: Nakonfigurovat pro PDF faktury
+- **Oprávnění Souborů**: Nastavit správná oprávnění adresářů
+- **Strategie Zálohování**: Implementovat pravidelné zálohy
 
 ---
 
-## Quick Start Guide
+## Rychlý Start
 
-### Prerequisites
-- PHP 8.2 or higher
+### Předpoklady
+- PHP 8.2 nebo vyšší
 - Composer
-- Node.js and npm
-- MySQL or SQLite database
+- Node.js a npm
+- MySQL nebo SQLite databáze
 
-### Installation
-1. **Clone the repository**
+### Instalace
+1. **Klonovat repozitář**
    ```bash
    git clone <repository-url>
    cd example-app
    ```
 
-2. **Install PHP dependencies**
+2. **Nainstalovat PHP závislosti**
    ```bash
    composer install
    ```
 
-3. **Install Node.js dependencies**
+3. **Nainstalovat Node.js závislosti**
    ```bash
    npm install
    ```
 
-4. **Environment setup**
+4. **Nastavení prostředí**
    ```bash
    cp .env.example .env
    php artisan key:generate
    ```
 
-5. **Database setup**
+5. **Nastavení databáze**
    ```bash
    php artisan migrate
    php artisan db:seed
    ```
 
-6. **Build assets**
+6. **Build assetů**
    ```bash
    npm run build
    ```
 
-7. **Start the server**
+7. **Spustit server**
    ```bash
    php artisan serve
    ```
 
-### Default Admin User
-After running migrations and seeders, you can create an admin user:
+### Výchozí Admin Uživatel
+Po spuštění migrací a seederů můžete vytvořit admin uživatele:
 ```bash
 php artisan tinker
 ```
@@ -976,23 +976,23 @@ $user->save();
 
 ---
 
-## Conclusion
+## Závěr
 
-This Laravel e-commerce application demonstrates modern web development practices with a focus on maintainability, security, and user experience. The modular architecture allows for easy extension and modification, while the comprehensive testing framework ensures reliability.
+Tato Laravel e-commerce aplikace demonstruje moderní postupy webového vývoje s důrazem na udržovatelnost, bezpečnost a uživatelskou zkušenost. Modulární architektura umožňuje snadné rozšiřování a modifikace, zatímco komplexní testovací framework zajišťuje spolehlivost.
 
-The application successfully implements all core e-commerce functionality including product management, shopping cart operations, order processing, and administrative controls. The use of modern tools like Vite, Tailwind CSS, and Alpine.js provides a responsive and interactive user interface.
+Aplikace úspěšně implementuje všechny základní e-commerce funkcionality včetně správy produktů, operací s nákupním košíkem, zpracování objednávek a administračních kontrol. Použití moderních nástrojů jako Vite, Tailwind CSS a Alpine.js poskytuje responzivní a interaktivní uživatelské rozhraní.
 
-For further development, consider implementing:
-- Payment gateway integration (Stripe, PayPal)
-- Email notifications
-- Advanced search and filtering
-- Product reviews and ratings
-- Inventory management
-- Multi-language support
-- API endpoints for mobile applications
+Pro další vývoj zvažte implementaci:
+- Integrace platební brány (Stripe, PayPal)
+- Email notifikace
+- Pokročilé vyhledávání a filtrování
+- Recenze a hodnocení produktů
+- Správa inventáře
+- Vícejazyčná podpora
+- API endpointy pro mobilní aplikace
 
 ---
 
-## License
+## Licence
 
-This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT). 
+Tento projekt je open-source software licencovaný pod [MIT licencí](https://opensource.org/licenses/MIT). 
