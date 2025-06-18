@@ -990,9 +990,3 @@ Pro další vývoj zvažte implementaci:
 - Správa inventáře
 - Vícejazyčná podpora
 - API endpointy pro mobilní aplikace
-
----
-
-## Licence
-
-Tento projekt je open-source software licencovaný pod [MIT licencí](https://opensource.org/licenses/MIT). 
