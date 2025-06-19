@@ -1,27 +1,3 @@
-# Laravel E-Commerce Aplikace - Technická Dokumentace
-
-## Obsah
-1. [Přehled Projektu](#přehled-projektu)
-2. [Technologický Stack](#technologický-stack)
-3. [Architektura a Struktura](#architektura-a-struktura)
-4. [Návrh Databáze](#návrh-databáze)
-5. [Autentifikace a Autorizace](#autentifikace-a-autorizace)
-6. [Správa Relací](#správa-relací)
-7. [Frontend Architektura](#frontend-architektura)
-8. [Blade Template Systém](#blade-template-systém)
-9. [Systém Košíku](#systém-košíku)
-10. [Zpracování Objednávek](#zpracování-objednávek)
-11. [Admin Panel](#admin-panel)
-12. [Správa Konfigurace](#správa-konfigurace)
-13. [Systém Logování](#systém-logování)
-14. [Správa Assetů](#správa-assetů)
-15. [Bezpečnostní Funkce](#bezpečnostní-funkce)
-16. [API a Routy](#api-a-routy)
-17. [Testování](#testování)
-18. [Nasazení](#nasazení)
-
----
-
 ## Přehled Projektu
 
 Toto je plně funkční e-commerce aplikace postavená na Laravel 12, která obsahuje správu produktů, funkcionalitu nákupního košíku, zpracování objednávek a administrační rozhraní. Aplikace následuje MVC (Model-View-Controller) architekturu a implementuje moderní postupy webového vývoje.
